@@ -4,17 +4,21 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+
 def main():
 
 ##############Please Edit this section##############
-    main_account = 'AAAAAAAAAAACCOUNT' #請輸入主要帳號(不要加gmail等等的後綴!)
-    password = 'PPPPPPPPPPASSWORD'  #請輸入這些帳號的密碼
+    main_account = 'castle105502510' #請輸入主要帳號(不要加gmail等等的後綴!)
+    password = 'mi25502133'  #請輸入這些帳號的密碼
 ####################################################
 
 
     print('可產生:',len(main_account)-1+sum(list(range(1,len(main_account)-1))),'組帳號')
 
-    driver = webdriver.Firefox()
+    opts = webdriver.FirefoxOptions()
+    opts.set_preference("dom.popup_maximum", 200) #允許最高開啟200個Tab(Firefox預設是最多20個Tab)
+    driver = webdriver.Firefox(options=opts)
+    # driver = webdriver.Firefox()
     account_list = []
     for dot in range(1,len(main_account)):
         account = main_account[:dot]+'.'+main_account[dot:]
@@ -26,8 +30,8 @@ def main():
             account_list.append(account)
 
     
-    for item in account_list:
-        print(item)
+    for index, item in enumerate(account_list):
+        print(index,': ',item)
         # options = webdriver.FirefoxOptions()
         
         driver.get('https://account.xiaomi.com/pass/register?callback=https%3A%2F%2Fbuy.mi.com%2Ftw%2Flogin%2Fcallback%3Ffollowup%3Dhttps%253A%252F%252Fwww.mi.com%252Ftw%252F%26sign%3DM2NhMTUwMTU5MGM2YzZiM2Q4YjMyNzZmOWMyZTFjMWNiYzYyMGEwOQ%2C%2C&sid=mi_xiaomitw&_locale=zh_TW')
