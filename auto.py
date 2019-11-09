@@ -5,8 +5,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 def main():
-    main_account = 'cast' #請輸入主要帳號(不要加gmail等等的後綴!)
-    password = '1234'  #請輸入這些帳號的密碼
+
+##############Please Edit this section##############
+    main_account = 'AAAAAAAAAAACCOUNT' #請輸入主要帳號(不要加gmail等等的後綴!)
+    password = 'PPPPPPPPPPASSWORD'  #請輸入這些帳號的密碼
+####################################################
+
 
     print('可產生:',len(main_account)-1+sum(list(range(1,len(main_account)-1))),'組帳號')
 
@@ -34,8 +38,13 @@ def main():
         
         driver.find_element_by_xpath("//*[@id='main_container']/div[4]/div[1]/div/div[6]/input").click()
         
-        wait = WebDriverWait(driver, 10) 
-        element = wait.until(EC.visibility_of_element_located((By.XPATH,'/html/body/div[2]/div/div/div/div[5]/div/dl/dd[1]/div/label/input')))                                   
+        try:
+            wait = WebDriverWait(driver, 3) 
+            element = wait.until(EC.visibility_of_element_located((By.XPATH,'/html/body/div[2]/div/div/div/div[5]/div/dl/dd[1]/div/label/input')))  
+        except:
+            print(item,' 註冊失敗，因為已經註冊過了!')
+            continue
+                                         
         driver.find_element_by_xpath("/html/body/div[2]/div/div/div/div[5]/div/dl/dd[1]/div/label/input").send_keys(password)
         driver.find_element_by_xpath("//*[@id='main_container']/div[5]/div/dl/dd[2]/div[1]/label/input").send_keys(password)
         
