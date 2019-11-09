@@ -8,8 +8,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 def main():
 
 ##############Please Edit this section##############
-    main_account = 'castle105502510' #請輸入主要帳號(不要加gmail等等的後綴!)
-    password = 'mi25502133'  #請輸入這些帳號的密碼
+    main_account = 'AAAAAAAAAAACCOUNT' #請輸入主要帳號(不要加gmail等等的後綴!)
+    password = 'PPPPPPPPPPASSWORD'  #請輸入這些帳號的密碼
 ####################################################
 
 
