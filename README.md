@@ -2,6 +2,7 @@
 
 ## Requirement
 - python3
+- ```pip install selenium```
 - Firefox browser
 - geckodriver(a web driver for Firefox)
     - [Dowload for Github, Click here](https://github.com/mozilla/geckodriver/releases)
