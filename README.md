@@ -5,7 +5,7 @@
 - ```pip install selenium```
 - Firefox browser
 - geckodriver(a web driver for Firefox)
-    - [Dowload for Github, Click here](https://github.com/mozilla/geckodriver/releases)
+    - [Dowload from Github, Click here](https://github.com/mozilla/geckodriver/releases)
 
 ## How to use
 - open auto.py, edit 'main_account' and 'password'
