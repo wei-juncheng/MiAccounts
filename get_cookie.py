@@ -14,7 +14,7 @@ def main():
 
     account_list = []
 
-    with open('account_list_1.txt') as f: #開啟相同目錄底下的account_list.txt (請先建立並修改此檔案，裡面每一行都是一個帳號且不包含email後綴，請看範例檔案)
+    with open('account_list.txt') as f: #開啟相同目錄底下的account_list.txt (請先建立並修改此檔案，裡面每一行都是一個帳號且不包含email後綴，請看範例檔案)
         load_account = f.read().splitlines()
     account_list = list(set(load_account)) #去除重複值
     print(account_list)
