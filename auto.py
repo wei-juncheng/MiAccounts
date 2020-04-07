@@ -8,8 +8,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 def main():
 
 ##############Please Edit this section##############
-    main_account = 'AAAAAAAAAAACCOUNT' #請輸入主要帳號(不要加gmail等等的後綴!)
-    password = 'PPPPPPPPPPASSWORD'  #請輸入這些帳號的密碼
+    main_account = '*******' #請輸入主要帳號(不要加@gmail......等等的後綴!)
+    suffix = '@********' # 填入Email的後綴。例如:'@gmail.com'
+    password = '********'  #請輸入這些帳號的密碼
+    max_success = 20 # 設定先建立20組帳號，避免一次開太多分頁 (可以依照個人喜好增加)
 ####################################################
 
 
@@ -18,7 +20,7 @@ def main():
     opts = webdriver.FirefoxOptions()
     opts.set_preference("dom.popup_maximum", 200) #允許最高開啟200個Tab(Firefox預設是最多20個Tab)
     driver = webdriver.Firefox(options=opts)
-    # driver = webdriver.Firefox()
+    
     account_list = []
     for dot in range(1,len(main_account)):
         account = main_account[:dot]+'.'+main_account[dot:]
@@ -29,7 +31,7 @@ def main():
             account = main_account[:dot1]+'.'+main_account[dot1:dot2]+'.'+main_account[dot2:]
             account_list.append(account)
 
-    
+    success_counter = 0
     for index, item in enumerate(account_list):
         print(index,': ',item)
         # options = webdriver.FirefoxOptions()
@@ -38,25 +40,28 @@ def main():
                                     
                                     
         # driver.find_element_by_xpath("//*[contains(text(), '請輸入E-mail')]").send_keys(item+'@gmail.com')
-        driver.find_element_by_name('email').send_keys(item+'@gmail.com')
+        driver.find_element_by_name('email').send_keys(item+suffix)
         
         driver.find_element_by_xpath("//*[@id='main_container']/div[4]/div[1]/div/div[6]/input").click()
         
         try:
-            wait = WebDriverWait(driver, 3) 
+            wait = WebDriverWait(driver, 2) 
             element = wait.until(EC.visibility_of_element_located((By.XPATH,'/html/body/div[2]/div/div/div/div[5]/div/dl/dd[1]/div/label/input')))  
         except:
-            print(item,' 註冊失敗，因為已經註冊過了!')
+            print(item,' 註冊失敗')
             continue
                                          
         driver.find_element_by_xpath("/html/body/div[2]/div/div/div/div[5]/div/dl/dd[1]/div/label/input").send_keys(password)
         driver.find_element_by_xpath("//*[@id='main_container']/div[5]/div/dl/dd[2]/div[1]/label/input").send_keys(password)
-        
-        #open tab
+        success_counter +=1
+        #open new tab
         
         driver.execute_script("window.open();")
         handles = driver.window_handles
         driver.switch_to_window(handles[-1])
+
+        if success_counter==max_success: 
+            break
 
     driver.close()
         
