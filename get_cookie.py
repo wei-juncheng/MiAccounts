@@ -8,18 +8,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 def main():
 
 ##############Please Edit this section##############
-    suffix = '@********' # 填入Email的後綴。例如:'@gmail.com'
-    password = '*********'  #請輸入account_list.txt裡面帳號一致的密碼 (此程式適合大量相同密碼的帳號海，不適合個別帳號)
+    suffix = '@gmail.com' # 填入Email的後綴。例如:'@gmail.com'
+    password = 'mi25502133'  #請輸入account_list.txt裡面帳號一致的密碼 (此程式適合大量相同密碼的帳號海，不適合個別帳號)
 ####################################################
 
     account_list = []
 
-    with open('account_list.txt') as f: #開啟相同目錄底下的account_list.txt (請先建立並修改此檔案，裡面每一行都是一個帳號且不包含email後綴，請看範例檔案)
-        account_list = f.read().splitlines()
-        print(account_list)
+    with open('account_list_1.txt') as f: #開啟相同目錄底下的account_list.txt (請先建立並修改此檔案，裡面每一行都是一個帳號且不包含email後綴，請看範例檔案)
+        load_account = f.read().splitlines()
+    account_list = list(set(load_account)) #去除重複值
+    print(account_list)
 
     opts = webdriver.FirefoxOptions()
     opts.add_argument("--incognito")
+    options.add_argument('-headless')
 
     for index, item in enumerate(account_list):
         print(index,': ',item,suffix)
@@ -49,7 +51,7 @@ def main():
         
         cookies_string = ""
         for item in cookies_list:
-            cookies_string += item['name']+"="+item['value']+" "
+            cookies_string += item['name']+"="+item['value']+"; "
         print(cookies_string)
         driver.close()
 
