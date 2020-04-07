@@ -12,7 +12,8 @@ def main():
     suffix = '@************' # 填入Email的後綴。例如:'@gmail.com'
     password = '************'  #請輸入這些帳號的密碼
     max_success = 10 # 設定這次先建立幾組帳號，避免一次建立太多打驗證碼會打到手軟 (可以依照個人身體狀況增加)
-    account_N = 7 # for MUMI
+    account_N_begin = 1 # for MUMI
+    account_N_end = 4   # for MUMI
 ####################################################
 
 
@@ -35,7 +36,7 @@ def main():
     #         account_list.append(account)
 
     #For MUMI
-    for i in range(1,account_N):
+    for i in range(account_N_begin,account_N_end+1):
         account = main_account + str(i)
         account_list.append(account)
 
@@ -63,7 +64,7 @@ def main():
         driver.find_element_by_xpath("/html/body/div[2]/div/div/div/div[5]/div/dl/dd[1]/div/label/input").send_keys(password)
         driver.find_element_by_xpath("//*[@id='main_container']/div[5]/div/dl/dd[2]/div[1]/label/input").send_keys(password)
         success_counter +=1
-        
+
         #open new tab
         driver.execute_script("window.open();")
         handles = driver.window_handles

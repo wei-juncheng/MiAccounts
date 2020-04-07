@@ -12,7 +12,8 @@ def main():
     main_account = '**' #請輸入主要帳號(不要加@gmail......等等的後綴!)
     suffix = '@************' # 填入Email的後綴。例如:'@gmail.com'
     password = '***********'  #請輸入account_list.txt裡面帳號一致的密碼 (此程式適合大量相同密碼的帳號海，不適合個別帳號)
-    account_N = 7 # for MUMI
+    account_N_begin = 1 # for MUMI
+    account_N_end = 4   # for MUMI
 ####################################################
 
     account_list = []
@@ -23,7 +24,7 @@ def main():
 
     # print(account_list)
 
-    for i in range(1,account_N):
+    for i in range(account_N_begin,account_N_end+1):
         account = main_account + str(i)
         account_list.append(account)
 
