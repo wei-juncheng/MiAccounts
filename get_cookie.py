@@ -8,8 +8,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 def main():
 
 ##############Please Edit this section##############
-    suffix = '@gmail.com' # 填入Email的後綴。例如:'@gmail.com'
-    password = 'mi25502133'  #請輸入account_list.txt裡面帳號一致的密碼 (此程式適合大量相同密碼的帳號海，不適合個別帳號)
+    suffix = '@*****' # 填入Email的後綴。例如:'@gmail.com'
+    password = '********'  #請輸入account_list.txt裡面帳號一致的密碼 (此程式適合大量相同密碼的帳號海，不適合個別帳號)
 ####################################################
 
     account_list = []
